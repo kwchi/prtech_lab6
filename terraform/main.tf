@@ -45,6 +45,7 @@ resource "aws_instance" "webapp_instance" {
   ami           = "ami-0669b163befffbdfc"
   instance_type = "t2.micro"
   security_groups= [aws_security_group.web_app.id]
+  subnet_id     = aws_subnet.main.id
   tags = {
     Name = "webapp_instance"
   }
