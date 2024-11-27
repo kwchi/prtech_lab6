@@ -5,12 +5,12 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+}
   backend "s3" {
     bucket = "lab6-tf"
     key    = "terraform.tfstate"
     region = "eu-central-1"
   }
-}
 }
 
 # Configure the AWS provider
