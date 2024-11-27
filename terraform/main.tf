@@ -13,8 +13,12 @@ provider "aws" {
   region     = "eu-central-1"
 }
 
+resource "random_id" "instance_id" {
+  byte_length = 8
+}
+
 resource "aws_security_group" "web_app" {
-  name        = "web_app"
+  name        = "web_app_${random_id.instance_id.hex}"
   description = "security group"
   ingress {
     from_port   = 80
