@@ -52,6 +52,7 @@ resource "aws_instance" "webapp_instance" {
   tags = {
     Name = "webapp_instance"
   }
+  depends_on = [aws_security_group.web_app]
 }
 
 output "instance_public_ip" {
