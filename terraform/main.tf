@@ -13,8 +13,8 @@ provider "aws" {
   region     = "eu-central-1"
 }
 
-resource "aws_security_group" "web_app" {
-  name        = "web_app"
+resource "aws_security_group" "web_app2" {
+  name        = "web_app2"
   description = "security group"
   ingress {
     from_port   = 80
@@ -37,15 +37,14 @@ resource "aws_security_group" "web_app" {
   }
 
   tags= {
-    Name = "web_app"
+    Name = "web_app2"
   }
 }
 
 resource "aws_instance" "webapp_instance" {
   ami           = "ami-0669b163befffbdfc"
   instance_type = "t2.micro"
-  security_groups= [aws_security_group.web_app.id]
-  subnet_id     = aws_subnet.main.id
+  security_groups= [web_app2]
   tags = {
     Name = "webapp_instance"
   }
