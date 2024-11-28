@@ -62,8 +62,8 @@ resource "aws_instance" "webapp_instance" {
 resource "null_resource" "cleanup_security_groups" {
   provisioner "local-exec" {
     command = <<EOT
-      aws ec2 describe-security-groups --query "SecurityGroups[?GroupName=='web_app*'].GroupId" --output text |
-      xargs -n1 -I{} aws ec2 delete-security-group --group-id {}
+    aws ec2 describe-security-groups --region eu-central-1 --query "SecurityGroups[?starts_with(GroupName, 'web_app')].GroupId" --output text |
+    xargs -n1 -I{} aws ec2 delete-security-group --region eu-central-1 --group-id {}
     EOT
   }
 }
