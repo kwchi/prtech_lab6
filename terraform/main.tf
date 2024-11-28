@@ -18,11 +18,11 @@ provider "aws" {
   region     = "eu-central-1"
 }
 
-variable "process_id" {
-  default = "default-pid"
+resource "random_id" "instance_id" {
+  byte_length = 8
 }
 resource "aws_security_group" "web_app" {
-  name        = "web_app_${var.process_id}"
+  name        = "web_app_${random_id.instance_id.hex}"
   description = "security group"
   ingress {
     from_port   = 80
@@ -57,15 +57,6 @@ resource "aws_instance" "webapp_instance" {
     Name = "webapp_instance"
   }
   depends_on = [aws_security_group.web_app]
-}
-
-resource "null_resource" "cleanup_security_groups" {
-  provisioner "local-exec" {
-    command = <<EOT
-    aws ec2 describe-security-groups --region eu-central-1 --query "SecurityGroups[?starts_with(GroupName, 'web_app')].GroupId" --output text |
-    xargs -n1 -I{} aws ec2 delete-security-group --region eu-central-1 --group-id {}
-    EOT
-  }
 }
 
 output "instance_public_ip" {
