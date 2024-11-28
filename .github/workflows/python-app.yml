@@ -37,10 +37,6 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-    - name: Build app image
-      run: |
-        docker build -t myimage .
-        docker run --rm -d -p 8080:8080 myimage
     - name: Setup Terraform
       env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
