@@ -1,6 +1,6 @@
 FROM python:3
 ADD app.py /
 RUN pip install flask
-RUN pipp install flask_restful
+RUN pip install flask_restful
 EXPOSE 8080
 CMD ["python", "./app.py"]
