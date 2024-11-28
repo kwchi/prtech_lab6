@@ -10,6 +10,7 @@ terraform {
     bucket = "lab6-tf"
     key    = "terraform.tfstate"
     region = "eu-central-1"
+    dynamodb_table = "lab-my-tf-lockid"
   }
 }
 
