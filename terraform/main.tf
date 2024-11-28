@@ -71,8 +71,3 @@ resource "aws_lightsail_container_service_deployment_version" "app_deployment" {
 
   service_name = aws_lightsail_container_service.application.name
 }
-
-output "instance_public_ip" {
-  value     = aws_instance.webapp_instance.public_ip
-  sensitive = true
-}
