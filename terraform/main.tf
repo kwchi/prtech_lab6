@@ -27,7 +27,7 @@ variable "REPOSITORY_URI" {
 
 resource "aws_lightsail_container_service" "application" {
   name = "app"
-  power = "nano"
+  power = "micro"
   scale = 1
 
   private_registry_access {
