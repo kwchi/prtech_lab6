@@ -43,6 +43,7 @@ resource "aws_lightsail_container_service" "application" {
 }
 
 resource "aws_lightsail_container_service_deployment_version" "app_deployment" {
+  timeout = "20m"
   container {
     container_name = "application"
 
