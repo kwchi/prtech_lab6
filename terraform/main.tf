@@ -54,6 +54,14 @@ resource "aws_instance" "webapp_instance" {
   ami           = "ami-0669b163befffbdfc"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.web_app.id]
+
+  user_data = <<-EOF
+    #!/bin/bash
+    yum update -y
+    yum install -y python3
+    python3 test_app.py
+  EOF
+
   tags = {
     Name = "webapp_instance"
   }
