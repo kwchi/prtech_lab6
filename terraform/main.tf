@@ -71,8 +71,6 @@ resource "aws_lightsail_container_service_deployment_version" "app_deployment" {
 
   service_name = aws_lightsail_container_service.application.name
   timeouts {
-    create = "20m" 
     update = "20m" 
-    delete = "20m" 
   }
 }
